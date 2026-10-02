@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "author": "",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-c3-devkitm-1", "id": "esp", "top": -38.7, "left": 265.02, "attrs": {} },
+    { "type": "chip-ads1115", "id": "ads", "top": -8.58, "left": 427.2, "attrs": {} },
+    { "type": "chip-analog-source", "id": "source", "top": 97.02, "left": 427.2, "attrs": {} },
+    {
+      "type": "chip-bq27441",
+      "id": "chip1",
+      "top": 154.62,
+      "left": 254.4,
+      "attrs": { "simulationSpeed": "60" }
+    }
+  ],
+  "connections": [
+    [ "esp:3V3.1", "ads:VCC", "#8f4814", [ "h-9.6", "v-38.4", "h163.2" ] ],
+    [ "esp:GND.5", "ads:GND", "black", [ "v19.2", "h96", "v-124.8" ] ],
+    [ "esp:8", "ads:SDA", "blue", [] ],
+    [ "esp:9", "ads:SCL", "violet", [] ],
+    [ "ads:ADDR", "esp:GND.5", "black", [ "h-38.4", "v105.6", "h-124.8" ] ],
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ads:A1", "source:VREF", "red", [ "h-19.2", "v48" ] ],
+    [ "ads:A0", "source:VAMP", "red", [ "h-28.8", "v48" ] ],
+    [ "esp:9", "chip1:SCL", "violet", [ "h27.52", "v153.6" ] ],
+    [ "chip1:SDA", "esp:8", "blue", [ "h11.41", "v-134.4" ] ],
+    [ "ads:A2", "source:ITEST", "cyan", [ "h-9.6", "v57.6", "h124.8", "v-19.2" ] ],
+    [ "esp:GND.5", "chip1:GND", "black", [ "h-19.2", "v57.6" ] ]
+  ],
+  "serialMonitor": { "display": "always", "newline": "lf" },
+  "dependencies": {}
+}
